@@ -3,20 +3,29 @@
   <div class="search">
     <div class="search-cus">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" #search aria-label="Search"
-        (keyup.enter)="onKeyEnter()">
-      <button type="button" class="btn btn-primary btn-sm m-3" (click)="onRest()">Rest</button>
+        (keyup.enter)="onSearch()">
+        <button type="button" class="btn btn-primary btn-sm m-2" (click)="onSearch()">Search</button>
+      <button type="button" class="btn btn-primary btn-sm m-2" (click)="onRest()">Rest</button>
+
+      <!-- <button type="button" class="btn btn-primary btn-sm m-3" (click)="onSorting('title')">Sorting</button> -->
+      <button type="button" class="btn btn-primary btn-sm m-2" (click)="sorting()">Sorting</button>
+      <button type="button" class="btn btn-primary btn-sm m-2" (click)="sortingDate()">Sorting by puplish date</button>
+
+
     </div>
 
   </div>
 </div>
 <div class="row">
-  <div class="col-md-2 col-sm-4 col-xs-6 mt-2 " *ngFor="let i of books">
-    <div class="card" style="width: 18rem;">
+  <div class="col-md-2 col-sm-4 col-xs-6 mt-2 " *ngFor="let i of books ">
+    <div class="card-cus" style="width: 18rem;">
       <img src="{{i.volumeInfo.imageLinks.thumbnail}}" class="card-img-top1 img-fluid" alt="...">
       <div class="card-body">
-        <h5 class="card-title">{{i.volumeInfo.title}}</h5>
+        <h2 class="card-title">{{i.volumeInfo.title}}</h2>
         <p class="card-text">{{i.volumeInfo.description}}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <p class="pulish-date">Published Date :{{i.volumeInfo.publishedDate}}</p>
+
+        <a href="{{i.volumeInfo.infoLink}}" target="_blank" class="btn btn-primary">Go to Offical link</a>
       </div>
     </div>
   </div>

@@ -5,10 +5,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class MovieService {
+export class BookService {
 
   constructor(private http: HttpClient) { }
-  baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=time&printType=magazines&key=AIzaSyBEJ2ImpntmnG3feH7k9x4uz-fQR6hA_y4&startIndex=0&maxResults=12&orderBy=relevance';
+  apiKey='AIzaSyD0yN1BQGS4KOJmbrSm3DdEhnrNsHfTUFM'
+  baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=books&printType=magazines&key='+this.apiKey+'&startIndex=0&maxResults=40&orderBy=relevance';
   baseUrl2 = 'https://www.googleapis.com/books/v1/volumes?';
 
 
@@ -20,6 +21,6 @@ export class MovieService {
     let params = new HttpParams();
   params = params.append('q', search);
 
-    return this.http.get(this.baseUrl2 + 'printType=magazines&key=AIzaSyBEJ2ImpntmnG3feH7k9x4uz-fQR6hA_y4&startIndex=0&maxResults=10&orderBy=relevance', { params });
+    return this.http.get(this.baseUrl2 + 'printType=magazines&key='+this.apiKey+'&startIndex=0&maxResults=40&orderBy=relevance', { params });
   }
 }
