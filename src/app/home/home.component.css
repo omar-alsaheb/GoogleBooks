@@ -1,0 +1,16 @@
+.card-text {
+	height: 96px;
+	overflow: hidden;
+	margin: 20px 4px;
+}
+.search {
+	width: 100%;
+	display: inline-block;
+  background-image: url('src/assets/images/search-bg.jpg');
+  height: 500px;
+}
+
+.search-cus {
+	width: 90%;
+	margin: 12% auto !important;
+}
