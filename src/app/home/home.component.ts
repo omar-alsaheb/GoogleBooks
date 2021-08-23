@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Items } from '../Models/item';
+import { VolumeInfo } from '../Models/volumeInfo';
 import { BookService } from '../Service/book.service';
 
 @Component({
@@ -11,7 +13,10 @@ export class HomeComponent implements OnInit {
 
   constructor(private http: HttpClient, private service: BookService) { }
 
-  books: Array<any>;;
+  books: Array<any>;
+
+  items: Items;
+  volumeInfo: VolumeInfo[];
   @ViewChild('search') search: ElementRef;
   searchEl: any;
 
@@ -19,7 +24,27 @@ export class HomeComponent implements OnInit {
 
     this.getbook();
 
-
+    // this.getbook1();
+    this.items = {
+      kind: '',
+      id: '',
+      etag: '',
+      selfLink: '',
+      volumeInfo: {
+        title: '',
+        publishedDate: '',
+        description: '',
+        pageCount: 0,
+        printType: '',
+        maturityRating: '',
+        allowAnonLogging: true,
+        contentVersion: '',
+        language: '',
+        previewLink: '',
+        infoLink: '',
+        canonicalVolumeLink: ''
+      }
+    }
 
   }
 
@@ -29,18 +54,29 @@ export class HomeComponent implements OnInit {
       this.books = data.items
 
 
-      // console.log(this.books)
-
     }, error => {
       console.log(error)
     })
   }
 
+  // getbook1() {
+  //   this.service.getBooks1().subscribe(data => {
+  //     // this.books = data.items
+  //     this.items = data.items;
+
+  //     // console.log(this.books)
+  //     console.log(this.items)
+
+
+  //   }, error => {
+  //     console.log(error)
+  //   })
+  // }
 
   onSearch() {
     this.searchEl = this.search.nativeElement.value;
 
-    if (this.search.nativeElement.value==='') {
+    if (this.search.nativeElement.value === '') {
       alert("Enter any word :)")
 
     }
@@ -65,11 +101,9 @@ export class HomeComponent implements OnInit {
 
   sorting() {
     this.books.sort((a, b) => (a.volumeInfo.title > b.volumeInfo.title) ? 1 : -1)
-    // console.log(this.books)
-
   }
 
-  sortingDate(){
+  sortingDate() {
     this.books.sort((a, b) => (a.volumeInfo.publishedDate > b.volumeInfo.publishedDate) ? 1 : -1)
   }
 
