@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   items: Items;
   volumeInfo: VolumeInfo[];
   @ViewChild('search') search: ElementRef;
-  searchEl: any;
+  searchEl: string;
 
   ngOnInit(): void {
 
@@ -90,6 +90,7 @@ export class HomeComponent implements OnInit {
   }
   onRest() {
     this.getbook();
+    this.search.nativeElement.value =''
   }
 
   // key: string = 'title';
